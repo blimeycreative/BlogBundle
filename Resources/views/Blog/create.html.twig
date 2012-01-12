@@ -1,0 +1,8 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}New Blog{% endblock%}
+
+{% block body %}
+    <h1>Add a new blog post.</h1>
+    {% include 'BloggerBlogBundle:Blog:form.html.twig' with { 'form': form, 'route_action': path('BloggerBlogBundle_blog_create') } %}
+{% endblock %}

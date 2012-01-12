@@ -1,0 +1,12 @@
+{% extends 'BloggerBlogBundle::layout.html.twig' %}
+
+{% block title %}Edit Blog{% endblock%}
+
+{% block body %}
+    <h1>Edit this blog post.</h1>
+    {% include 'BloggerBlogBundle:Blog:form.html.twig' with { 'form': form, 'route_action': path('BloggerBlogBundle_blog_edit', {'id': blog.id}) } %}
+        <form action="{{ path('BloggerBlogBundle_blog_delete', { 'id': blog.id }) }}" method="post">
+          {{ form_widget(delete_form) }}
+          <button type="submit">Delete</button>
+        </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+<?php
+
+// src/Blogger/BlogBundle/Entity/Comment.php
+
+namespace Blogger\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
+/**
+ * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="category")
+ */
+class Category {
+
+  /**
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  protected $id;
+
+  /**
+   * @ORM\ManyToMany(targetEntity="Blog", inversedBy="categorys")
+   */
+  protected $blog;
+  
+  /**
+   * @ORM\Column(type="text")
+   */
+  protected $name;
+
+}
+?>
