@@ -11,19 +11,19 @@ class CategoryFixtures extends AbstractFixture implements OrderedFixtureInterfac
 {
     public function load($manager)
     {
-        $category1 = new Category();
+        $category1 = new category();
         $category1->setName('general'); 
         $manager->persist($category1);
-        $category2 = new Category();
+        $category2 = new category();
         $category2->setName('construction-and-engineering');
         $manager->persist($category2);
-        $category3 = new Category();
+        $category3 = new category();
         $category3->setName('residential-developments');
         $manager->persist($category3);
-        $category4 = new Category();
+        $category4 = new category();
         $category4->setName('modular-buildings');
         $manager->persist($category4);
-        $category5 = new Category();
+        $category5 = new category();
         $category5->setName('furniture-packs');
         $manager->persist($category5);
 
