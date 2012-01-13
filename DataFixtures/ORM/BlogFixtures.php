@@ -19,6 +19,7 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
         $blog1->setTags('symfony2, php, paradise, symblog');
         $blog1->setCreated(new \DateTime());
         $blog1->setUpdated($blog1->getCreated());
+        $blog1->addCategory($manager->merge($this->getReference('category-1')));
         $manager->persist($blog1);
 
         $blog2 = new Blog();
@@ -29,6 +30,8 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
         $blog2->setTags('pool, leaky, hacked, movie, hacking, symblog');
         $blog2->setCreated(new \DateTime("2011-07-23 06:12:33"));
         $blog2->setUpdated($blog2->getCreated());
+        $blog2->addCategory($manager->merge($this->getReference('category-1')));
+        $blog2->addCategory($manager->merge($this->getReference('category-2')));
         $manager->persist($blog2);
 
         $blog3 = new Blog();
@@ -39,6 +42,7 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
         $blog3->setTags('misdirection, magic, movie, hacking, symblog');
         $blog3->setCreated(new \DateTime("2011-07-16 16:14:06"));
         $blog3->setUpdated($blog3->getCreated());
+        $blog3->addCategory($manager->merge($this->getReference('category-3')));
         $manager->persist($blog3);
 
         $blog4 = new Blog();
@@ -49,6 +53,7 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
         $blog4->setTags('grid, daftpunk, movie, symblog');
         $blog4->setCreated(new \DateTime("2011-06-02 18:54:12"));
         $blog4->setUpdated($blog4->getCreated());
+        $blog4->addCategory($manager->merge($this->getReference('category-4')));
         $manager->persist($blog4);
 
         $blog5 = new Blog();
@@ -59,6 +64,7 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
         $blog5->setTags('binary, one, zero, alive, dead, !trusting, movie, symblog');
         $blog5->setCreated(new \DateTime("2011-04-25 15:34:18"));
         $blog5->setUpdated($blog5->getCreated());
+        $blog5->addCategory($manager->merge($this->getReference('category-5')));
         $manager->persist($blog5);
 
         $manager->flush();
@@ -72,7 +78,7 @@ class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
     
     public function getOrder()
     {
-        return 1;
+        return 2;
     }
 
 }
