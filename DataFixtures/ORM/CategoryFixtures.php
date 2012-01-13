@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Blogger\BlogBundle\Entity\Blog;
 
-class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
+class CategoryFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load($manager)
     {
