@@ -6,6 +6,7 @@ namespace Blogger\BlogBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Blogger\BlogBundle\Entity\Blog;
+use Blogger\BlogBundle\Entity\Category;
 
 class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
