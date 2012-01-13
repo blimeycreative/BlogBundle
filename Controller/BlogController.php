@@ -7,27 +7,18 @@ namespace Blogger\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Blogger\BlogBundle\Entity\Blog;
 use Blogger\BlogBundle\Form\BlogType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Blog controller.
  */
 class BlogController extends Controller {
-
-  public function blogsByCategoryAction($category) {
-    $em = $this->getDoctrine()
-            ->getEntityManager();
-
-    $blogs = $em->getRepository('BloggerBlogBundle:Blog')
-            ->getLatestBlogsForCategory($category);
-
-    return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
-                'blogs' => $blogs
-            ));
-  }
-
+  
   /**
-   * Show a blog entry
-   */
+     * @Route("/show/{id}", requirements={"id"="\d+"}, name="BloggerBlogBundle_blog_show")
+     * @Template()
+     */
   public function showAction($id) {
     $em = $this->getDoctrine()->getEntityManager();
 
@@ -46,6 +37,10 @@ class BlogController extends Controller {
             ));
   }
   
+  /**
+     * @Route("/admin/blog/create", name="BloggerBlogBundle_blog_create")
+     * @Template()
+     */
   public function createAction() {
     $blog = new Blog();
     $request = $this->getRequest();
@@ -69,7 +64,11 @@ class BlogController extends Controller {
                 'form' => $form->createView()
             ));
   }
-
+  
+  /**
+     * @Route("/admin/blog/edit/{id}", name="BloggerBlogBundle_blog_edit")
+     * @Template()
+     */
   public function editAction($id) {
     if ($this->getRequest()->getMethod() == "POST") {
       $em = $this->getDoctrine()->getEntityManager();
@@ -117,7 +116,11 @@ class BlogController extends Controller {
               ));
     }
   }
-
+  
+  /**
+     * @Route("/{id}/delete", name="BloggerBlogBundle_blog_delete")
+     * @Template()
+     */
   public function deleteAction($id) {
     $form = $this->createDeleteForm($id);
     $request = $this->getRequest();
@@ -145,5 +148,22 @@ class BlogController extends Controller {
                     ->getForm()
     ;
   }
+  
+  /**
+     * @Route("/{category}", name="BloggerBlogBundle_blog_category")
+     * @Template()
+     */
+  public function blogsByCategoryAction($category) {
+    $em = $this->getDoctrine()
+            ->getEntityManager();
+
+    $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+            ->getLatestBlogsForCategory($category);
+
+    return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
+                'blogs' => $blogs
+            ));
+  }
+
 
 }
