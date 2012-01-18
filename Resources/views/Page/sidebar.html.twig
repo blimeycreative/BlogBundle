@@ -8,7 +8,7 @@
         {% for archive_date in archive_dates %}
           <p><a href="{{ path('BloggerBlogBundle_blog_date', {'date' : archive_date }) }}">{{ archive_date|replace({'/':' '}) }}</a></p>
         {% else %}
-          <p>There are no categories</p>
+          <p>There are no previous blog posts</p>
         {% endfor %}
   </p>
 </section>
