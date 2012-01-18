@@ -2,6 +2,31 @@
 
 <section class="section">
   <header>
+    <h3>Archives</h3>
+  </header>
+  <p>
+        {% for archive_date in archive_dates %}
+          <p><a href="{{ path('BloggerBlogBundle_blog_date', {'date' : archive_date }) }}">{{ archive_date|replace({'/':' '}) }}</a></p>
+        {% else %}
+          <p>There are no categories</p>
+        {% endfor %}
+  </p>
+</section>
+<section class="section">
+  <header>
+    <h3>Tag Cloud</h3>
+  </header>
+  <p class="tags">
+        {% for tag, weight in tags %}
+      <span class="weight-{{ weight }}">{{ tag }}</span>
+        {% else %}
+    <p>There are no tags</p>
+        {% endfor %}
+  </p>
+</section>
+
+<section class="section">
+  <header>
     <h3>Categories</h3>
   </header>
   <p>

@@ -14,6 +14,39 @@ use Doctrine\ORM\EntityRepository;
  */
 class BlogRepository extends EntityRepository {
   
+  public function getArchiveList(){
+    $blogs = $this->createQueryBuilder('b')
+            ->select('b.updated')
+            ->addOrderBy('b.updated', 'desc')
+            ->getQuery()
+            ->getResult();
+    
+    $dates = array();
+    foreach ($blogs as $blog){
+      $time = strtotime($blog['updated']);
+      $date = date('Y/F', $time);
+      if(!in_array($date, $dates))
+         $dates[] = $date;
+    }
+    return $dates;
+  }
+  
+  public function getBlogsByDate($date){
+    $date = str_replace('/', ' ', $date);
+    $max = date('Y-m-d H:i:s',strtotime($date.' +1 month'));
+    $min = date('Y-m-d H:i:s',strtotime($date));
+
+    $blogs = $this->createQueryBuilder('b')
+            ->select('b')
+            ->where('b.updated > :min and b.updated < :max')
+            ->setParameter('min', $min)
+            ->setParameter('max', $max)
+            ->addOrderBy('b.updated', 'desc')
+            ->getQuery()
+            ->getResult();   
+    return $blogs;
+  }
+
   public function getLatestBlogsForCategory($category, $limit = null) {
     $qb = $this->createQueryBuilder('b')
             ->select('b, co')
@@ -36,7 +69,7 @@ class BlogRepository extends EntityRepository {
                      ->select('b.tags')
                      ->getQuery()
                      ->getResult();
-
+    
     $tags = array();
     foreach ($blogTags as $blogTag)
     {
@@ -77,7 +110,6 @@ public function getTagWeights($tags)
 
     return $tagWeights;
 }
-
 
   public function getLatestBlogs($limit = null) {
     $qb = $this->createQueryBuilder('b')

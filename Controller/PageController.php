@@ -67,7 +67,16 @@ class PageController extends Controller {
                 'form' => $form->createView()
             ));
   }
-
+  
+    /**
+     * @Route("/test")
+     * @Template()
+     */
+  public function testAction() {
+    $em = $this->getDoctrine()->getEntityManager();
+    $em->getRepository('blog')->getArchiveList();
+  }
+  
   public function sidebarAction() {
     $em = $this->getDoctrine()
             ->getEntityManager();
@@ -82,13 +91,16 @@ class PageController extends Controller {
                            ->getParameter('blogger_blog.comments.latest_comment_limit');
     $latestComments = $em->getRepository('BloggerBlogBundle:Comment')
                          ->getLatestComments($commentLimit);
-    
+       
     $categories = $em->getRepository('BloggerBlogBundle:Category')->findAll();
 
+    $archive_dates = $em->getRepository('BloggerBlogBundle:Blog')->getArchiveList();
+    
     return $this->render('BloggerBlogBundle:Page:sidebar.html.twig', array(
         'latestComments'    => $latestComments,
         'tags'              => $tagWeights,
-        'categories'        => $categories
+        'categories'        => $categories,
+        'archive_dates'     => $archive_dates
     ));
   }
 

@@ -164,6 +164,22 @@ class BlogController extends Controller {
                 'blogs' => $blogs
             ));
   }
+  
+  /**
+     * @Route("/{date}", name="BloggerBlogBundle_blog_date", requirements={"date"="[0-9]{4}\/[a-zA-Z]+"})
+     * @Template()
+     */
+  public function blogsByDateAction($date) {
+    $em = $this->getDoctrine()
+            ->getEntityManager();
+
+    $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+            ->getBlogsByDate($date);
+
+    return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
+                'blogs' => $blogs
+            ));
+  }
 
 
 }
