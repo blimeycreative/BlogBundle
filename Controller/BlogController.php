@@ -22,11 +22,15 @@ class BlogController extends Controller {
   public function latestBlogsSummaryAction($category, $number_of_posts, $length){
     $em = $this->getDoctrine()->getEntityManager();
     $blogs = $em->getRepository('BloggerBlogBundle:Blog')->getLatestBlogsSummary($category, $number_of_posts, $length);
-    $category = $em->getRepository('BloggerBlogBundle:Category')->find($category);
+    if($em->getRepository('BloggerBlogBundle:Category')->find($category))
+      $category = $em->getRepository('BloggerBlogBundle:Category')->find($category)->getName();
+    else
+      $category = "";
+    
     return $this->render('BloggerBlogBundle:Page:latestSummary.html.twig', array(
               'blogs' => $blogs,
               'length' => $length,
-              'category' => $category->getName()
+              'category' => $category
             ));
   }
   
