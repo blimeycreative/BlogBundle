@@ -16,6 +16,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class BlogController extends Controller {
   
   /**
+     * @Route("/latest-blogs/summary/{category}/{number_of_posts}/{length}", name="BloggerBlogBundle_blog_summary")
+     * @Template()
+     */  
+  public function latestBlogsSummaryAction($category, $number_of_posts, $length){
+    $em = $this->getDoctrine()->getEntityManager();
+    $blogs = $em->getRepository('BloggerBlogBundle:Blog')->getLatestBlogsSummary($category, $number_of_posts, $length);
+    return $this->render('BloggerBlogBundle:Page:latestSummary.html.twig', array(
+              'blogs' => $blogs,
+              'length' => $length
+            ));
+  }
+  
+  /**
      * @Route("/show/{id}", requirements={"id"="\d+"}, name="BloggerBlogBundle_blog_show")
      * @Template()
      */
@@ -180,6 +193,5 @@ class BlogController extends Controller {
                 'blogs' => $blogs
             ));
   }
-
-
+    
 }

@@ -123,5 +123,18 @@ public function getTagWeights($tags)
     return $qb->getQuery()
                     ->getResult();
   }
-
+  
+  public function getLatestBlogsSummary($category = 0, $number_of_posts = 2, $length = 0){
+    $qb = $this->createQueryBuilder('b')
+            ->select('b');
+            if($category){
+              $qb->leftJoin('categories', 'ca');
+              $qb->where('ca.name = :name');
+              $qb->setParameter('name', $category);
+            }
+            $qb->setMaxResults($number_of_posts);
+            return $qb->getQuery()->getResult();
+            
+  }
+  
 }

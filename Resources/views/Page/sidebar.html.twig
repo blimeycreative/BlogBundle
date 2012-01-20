@@ -12,6 +12,7 @@
         {% endfor %}
   </p>
 </section>
+{% render 'BloggerBlogBundle:Blog:latestBlogsSummary' with {'category': 0,'number_of_posts': 3, 'length': 10} %}
 <section class="section">
   <header>
     <h3>Tag Cloud</h3>
@@ -34,18 +35,6 @@
           <p><a href="{{ path('BloggerBlogBundle_blog_category', {'category' : category.name }) }}">{{ category.name|title }}</a></p>
         {% else %}
           <p>There are no categories</p>
-        {% endfor %}
-  </p>
-</section>
-<section class="section">
-  <header>
-    <h3>Tag Cloud</h3>
-  </header>
-  <p class="tags">
-        {% for tag, weight in tags %}
-      <span class="weight-{{ weight }}">{{ tag }}</span>
-        {% else %}
-    <p>There are no tags</p>
         {% endfor %}
   </p>
 </section>

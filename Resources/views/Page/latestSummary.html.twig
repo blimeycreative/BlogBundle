@@ -1,0 +1,19 @@
+<section class="section">
+  <header>
+    <h3>Latest News</h3>
+  </header>
+  <p>
+        {% for blog in blogs %}
+    <h4><span class="highlight">{{ blog.created|date('l, F j, Y') }}</span></h4>
+    <h4 class="red-font">{{ blog.title }}</h4>
+        {% if length %}
+      {{ blog.blog(length) }}
+    {% endif %}
+    <a href="{{ path('BloggerBlogBundle_blog_show', { 'id': blog.id }) }}">Read More</a>
+    <br /><br />
+
+        {% else %}
+    <p>There are no recent blog posts</p>
+        {% endfor %}
+  </p>
+</section>
