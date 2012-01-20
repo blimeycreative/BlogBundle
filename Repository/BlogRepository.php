@@ -129,8 +129,8 @@ public function getTagWeights($tags)
             ->select('b');
             if($category){
               $qb->leftJoin('categories', 'ca');
-              $qb->where('ca.name = :name');
-              $qb->setParameter('name', $category);
+              $qb->where('ca.id = :id');
+              $qb->setParameter('id', $category);
             }
             $qb->setMaxResults($number_of_posts);
             return $qb->getQuery()->getResult();

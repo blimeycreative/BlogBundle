@@ -21,8 +21,8 @@ class BlogController extends Controller {
      */  
   public function latestBlogsSummaryAction($category, $number_of_posts, $length){
     $em = $this->getDoctrine()->getEntityManager();
+    $blogs = $em->getRepository('BloggerBlogBundle:Blog')->getLatestBlogsSummary($category, $number_of_posts, $length);
     $category = $em->getRepository('BloggerBlogBundle:Category')->find($category);
-    $blogs = $em->getRepository('BloggerBlogBundle:Blog')->getLatestBlogsSummary($category->getName(), $number_of_posts, $length);
     return $this->render('BloggerBlogBundle:Page:latestSummary.html.twig', array(
               'blogs' => $blogs,
               'length' => $length,
