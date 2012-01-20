@@ -128,7 +128,7 @@ public function getTagWeights($tags)
     $qb = $this->createQueryBuilder('b')
             ->select('b');
             if($category){
-              $qb->leftJoin('categories', 'ca');
+              $qb->leftJoin('b.categories', 'ca');
               $qb->where('ca.id = :id');
               $qb->setParameter('id', $category);
             }
