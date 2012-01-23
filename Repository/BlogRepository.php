@@ -16,8 +16,8 @@ class BlogRepository extends EntityRepository {
   
   public function getArchiveList(){
     $blogs = $this->createQueryBuilder('b')
-            ->select('b.updated')
-            ->addOrderBy('b.updated', 'desc')
+            ->select('b.created')
+            ->addOrderBy('b.created', 'desc')
             ->getQuery()
             ->getResult();
     
@@ -41,7 +41,7 @@ class BlogRepository extends EntityRepository {
             ->where('b.updated > :min and b.updated < :max')
             ->setParameter('min', $min)
             ->setParameter('max', $max)
-            ->addOrderBy('b.updated', 'desc')
+            ->addOrderBy('b.created', 'desc')
             ->getQuery()
             ->getResult();   
     return $blogs;
@@ -132,6 +132,7 @@ public function getTagWeights($tags)
               $qb->where('ca.id = :id');
               $qb->setParameter('id', $category);
             }
+            $qb->addOrderBy('b.created', 'DESC');
             $qb->setMaxResults($number_of_posts);
             return $qb->getQuery()->getResult();
             
