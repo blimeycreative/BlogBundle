@@ -21,6 +21,7 @@ class BlogType extends AbstractType
                 'expanded' => true
             ))
         ;
+        
     }
 
     public function getName()

@@ -62,7 +62,7 @@ class Blog {
   protected $updated;
   
   /**
-   * @ORM\ManyToMany(targetEntity="Category", mappedBy="blog")
+   * @ORM\ManyToMany(targetEntity="Category", inversedBy="blogs")
    */
   protected $categories;
   
@@ -245,16 +245,6 @@ class Blog {
     }
 
     /**
-     * Add category
-     *
-     * @param Blogger\BlogBundle\Entity\Category $categories
-     */
-    public function addCategories(\Blogger\BlogBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-    }
-
-    /**
      * Get categories
      *
      * @return Doctrine\Common\Collections\Collection 
@@ -262,5 +252,15 @@ class Blog {
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param Blogger\BlogBundle\Entity\Category $categories
+     */
+    public function addCategory(\Blogger\BlogBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
     }
 }

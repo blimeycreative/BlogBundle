@@ -1,6 +1,6 @@
 <?php
 
-// src/Blogger/BlogBundle/Entity/Comment.php
+// src/Blogger/BlogBundle/Entity/Category.php
 
 namespace Blogger\BlogBundle\Entity;
 
@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\CategoryRepository")
  * @ORM\Table(name="category")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Category {
 
@@ -30,6 +31,11 @@ class Category {
    * @ORM\Column(type="text")
    */
   protected $name;
+  
+  /**
+   * @ORM\Column(type="text")
+   */
+  protected $slug;
 
     public function __construct()
     {
@@ -89,5 +95,45 @@ class Category {
     public function getBlog()
     {
         return $this->blog;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param text $slug
+     */
+    public function setSlug($slug)
+    {
+      $this->slug = $slug;
+    }
+    
+    /**
+     * @ORM\preUpdate
+     * @ORM\prePersist
+     */
+    public function slugify(){
+      $slug = preg_replace('/\W+/', '-', $this->name);
+      $slug = strtolower(trim($slug, '-'));
+      $this->setSlug($slug);
+    }
+
+    /**
+     * Get slug
+     *
+     * @return text 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Get blogs
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getBlogs()
+    {
+        return $this->blogs;
     }
 }

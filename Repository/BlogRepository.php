@@ -52,8 +52,8 @@ class BlogRepository extends EntityRepository {
             ->select('b, co')
             ->leftJoin('b.comments', 'co')
             ->leftJoin('b.categories', 'ca')
-            ->where('ca.name = :name')
-            ->setParameter('name', $category)
+            ->where('ca.slug = :slug')
+            ->setParameter('slug', $category)
             ->addOrderBy('b.created', 'DESC');
 
     if (false === is_null($limit))
@@ -61,16 +61,6 @@ class BlogRepository extends EntityRepository {
 
     return $qb->getQuery()
                     ->getResult();
-  }
-  
-  public function getOneCategoryForBlog($blog_id, $limit){
-        $qb = $this->createQueryBuilder('b')
-            ->select('ca.name')
-            ->leftJoin('b.categories', 'ca')
-            ->where('b.id = :id')
-            ->setParameter('id', $blog_id)
-            ->setMaxResults($limit);
-        return $qb->getQuery()->getResult();
   }
   
   public function getTags()

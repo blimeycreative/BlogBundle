@@ -32,7 +32,7 @@
   </header>
   <p>
         {% for category in categories %}
-          <p><a href="{{ path('BloggerBlogBundle_blog_category', {'category' : category.name }) }}">{{ category.name|title }}</a></p>
+          <p><a href="{{ path('BloggerBlogBundle_blog_category', {'category' : category.slug }) }}">{{ category.name|title }}</a></p>
         {% else %}
           <p>There are no categories</p>
         {% endfor %}
