@@ -63,7 +63,7 @@ class BlogRepository extends EntityRepository {
                     ->getResult();
   }
   
-  public function getOneCategoryForBlog($blog_id){
+  public function getOneCategoryForBlog($blog_id, $limit){
         $qb = $this->createQueryBuilder('b')
             ->select('ca.name')
             ->leftJoin('b.categories', 'ca')
