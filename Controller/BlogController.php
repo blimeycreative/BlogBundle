@@ -22,8 +22,8 @@ class BlogController extends Controller {
   public function latestBlogsSummaryAction($category, $number_of_posts, $length){
     $em = $this->getDoctrine()->getEntityManager();
     $blogs = $em->getRepository('BloggerBlogBundle:Blog')->getLatestBlogsSummary($category, $number_of_posts, $length);
-    if($em->getRepository('BloggerBlogBundle:Category')->find($category))
-      $category = $em->getRepository('BloggerBlogBundle:Category')->find($category)->getName();
+    if($em->getRepository('BloggerBlogBundle:Category')->findOneBySlug($category))
+      $category = $em->getRepository('BloggerBlogBundle:Category')->findOneBySlug($category)->getSlug();
     else
       $category = "";
     
