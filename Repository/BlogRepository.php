@@ -124,13 +124,13 @@ public function getTagWeights($tags)
                     ->getResult();
   }
   
-  public function getLatestBlogsSummary($category = 0, $number_of_posts = 2, $length = 0){
+  public function getLatestBlogsSummary($category = "", $number_of_posts = 2, $length = 0){
     $qb = $this->createQueryBuilder('b')
             ->select('b');
             if($category){
               $qb->leftJoin('b.categories', 'ca');
-              $qb->where('ca.id = :id');
-              $qb->setParameter('id', $category);
+              $qb->where('ca.slug = :slug');
+              $qb->setParameter('slug', $category);
             }
             $qb->addOrderBy('b.created', 'DESC');
             $qb->setMaxResults($number_of_posts);
