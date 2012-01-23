@@ -23,7 +23,7 @@ class BlogRepository extends EntityRepository {
     
     $dates = array();
     foreach ($blogs as $blog){
-      $time = strtotime($blog['updated']);
+      $time = strtotime($blog['created']);
       $date = date('Y/F', $time);
       if(!in_array($date, $dates))
          $dates[] = $date;
@@ -38,7 +38,7 @@ class BlogRepository extends EntityRepository {
 
     $blogs = $this->createQueryBuilder('b')
             ->select('b')
-            ->where('b.updated > :min and b.updated < :max')
+            ->where('b.created > :min and b.created < :max')
             ->setParameter('min', $min)
             ->setParameter('max', $max)
             ->addOrderBy('b.created', 'desc')
