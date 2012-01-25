@@ -1,14 +1,14 @@
 <?php
 
-// src/Blogger/BlogBundle/Entity/Blog.php
+// src/Oxygen/BlogBundle/Entity/Blog.php
 
-namespace Blogger\BlogBundle\Entity;
+namespace Oxygen\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\BlogRepository")
+ * @ORM\Entity(repositoryClass="Oxygen\BlogBundle\Repository\BlogRepository")
  * @ORM\Table(name="blog")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -227,9 +227,9 @@ class Blog {
     /**
      * Add comments
      *
-     * @param Blogger\BlogBundle\Entity\Comment $comments
+     * @param Oxygen\BlogBundle\Entity\Comment $comments
      */
-    public function addComment(\Blogger\BlogBundle\Entity\Comment $comments)
+    public function addComment(\Oxygen\BlogBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
     }
@@ -257,9 +257,9 @@ class Blog {
     /**
      * Add categories
      *
-     * @param Blogger\BlogBundle\Entity\Category $categories
+     * @param Oxygen\BlogBundle\Entity\Category $categories
      */
-    public function addCategory(\Blogger\BlogBundle\Entity\Category $category)
+    public function addCategory(\Oxygen\BlogBundle\Entity\Category $category)
     {
         $this->categories[] = $category;
     }

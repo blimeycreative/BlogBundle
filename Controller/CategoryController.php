@@ -1,13 +1,13 @@
 <?php
 
-namespace Blogger\BlogBundle\Controller;
+namespace Oxygen\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Blogger\BlogBundle\Entity\Category;
-use Blogger\BlogBundle\Form\CategoryType;
+use Oxygen\BlogBundle\Entity\Category;
+use Oxygen\BlogBundle\Form\CategoryType;
 
 /**
  * Category controller.
@@ -26,7 +26,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entities = $em->getRepository('BloggerBlogBundle:Category')->findAll();
+        $entities = $em->getRepository('OxygenBlogBundle:Category')->findAll();
 
         return array('entities' => $entities);
     }
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('BloggerBlogBundle:Category')->find($id);
+        $entity = $em->getRepository('OxygenBlogBundle:Category')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
@@ -76,7 +76,7 @@ class CategoryController extends Controller
      *
      * @Route("/create", name="category_create")
      * @Method("post")
-     * @Template("BloggerBlogBundle:Category:new.html.twig")
+     * @Template("OxygenBlogBundle:Category:new.html.twig")
      */
     public function createAction()
     {
@@ -110,7 +110,7 @@ class CategoryController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('BloggerBlogBundle:Category')->find($id);
+        $entity = $em->getRepository('OxygenBlogBundle:Category')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
@@ -131,13 +131,13 @@ class CategoryController extends Controller
      *
      * @Route("/{id}/update", name="category_update")
      * @Method("post")
-     * @Template("BloggerBlogBundle:Category:edit.html.twig")
+     * @Template("OxygenBlogBundle:Category:edit.html.twig")
      */
     public function updateAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $entity = $em->getRepository('BloggerBlogBundle:Category')->find($id);
+        $entity = $em->getRepository('OxygenBlogBundle:Category')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Category entity.');
@@ -179,7 +179,7 @@ class CategoryController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('BloggerBlogBundle:Category')->find($id);
+            $entity = $em->getRepository('OxygenBlogBundle:Category')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Category entity.');

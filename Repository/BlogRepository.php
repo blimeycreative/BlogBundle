@@ -1,8 +1,8 @@
 <?php
 
-// src/Blogger/BlogBundle/Repository/BlogRepository.php
+// src/Oxygen/BlogBundle/Repository/BlogRepository.php
 
-namespace Blogger\BlogBundle\Repository;
+namespace Oxygen\BlogBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

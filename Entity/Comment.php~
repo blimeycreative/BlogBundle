@@ -1,14 +1,14 @@
 <?php
-// src/Blogger/BlogBundle/Entity/Comment.php
+// src/Oxygen/BlogBundle/Entity/Comment.php
 
-namespace Blogger\BlogBundle\Entity;
+namespace Oxygen\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\CommentRepository")
+ * @ORM\Entity(repositoryClass="Oxygen\BlogBundle\Repository\CommentRepository")
  * @ORM\Table(name="comment")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -191,9 +191,9 @@ class Comment
     /**
      * Set blog
      *
-     * @param Blogger\BlogBundle\Entity\Blog $blog
+     * @param Oxygen\BlogBundle\Entity\Blog $blog
      */
-    public function setBlog(\Blogger\BlogBundle\Entity\Blog $blog)
+    public function setBlog(\Oxygen\BlogBundle\Entity\Blog $blog)
     {
         $this->blog = $blog;
     }
@@ -201,7 +201,7 @@ class Comment
     /**
      * Get blog
      *
-     * @return Blogger\BlogBundle\Entity\Blog 
+     * @return Oxygen\BlogBundle\Entity\Blog 
      */
     public function getBlog()
     {

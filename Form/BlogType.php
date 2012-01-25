@@ -1,6 +1,6 @@
 <?php
 
-namespace Blogger\BlogBundle\Form;
+namespace Oxygen\BlogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -16,7 +16,7 @@ class BlogType extends AbstractType
             ->add('image')
             ->add('tags')
             ->add('categories', 'entity', array(
-                'class' => 'BloggerBlogBundle:Category',
+                'class' => 'OxygenBlogBundle:Category',
                 'multiple' => true,
                 'expanded' => true
             ))
@@ -26,6 +26,6 @@ class BlogType extends AbstractType
 
     public function getName()
     {
-        return 'blogger_blogbundle_blogtype';
+        return 'oxygen_blogbundle_blogtype';
     }
 }

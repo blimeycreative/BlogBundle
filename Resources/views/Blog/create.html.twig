@@ -1,8 +1,30 @@
-{% extends 'BloggerBlogBundle::layout.html.twig' %}
+{% extends 'OxygenBlogBundle::layout.html.twig' %}
 
 {% block title %}New Blog{% endblock%}
 
 {% block body %}
     <h1>Add a new blog post.</h1>
-    {% include 'BloggerBlogBundle:Blog:form.html.twig' with { 'form': form, 'route_action': path('BloggerBlogBundle_blog_create') } %}
+    {% include 'OxygenBlogBundle:Blog:form.html.twig' with { 'form': form, 'route_action': path('OxygenBlogBundle_blog_create') } %}
+    {{ media_form|raw }}
+{% endblock %}
+{% block javascripts %}
+  {% javascripts
+    output="/js/jwysiwyg.js"
+    '@OxygenBlogBundle/Resources/public/js/*'
+  %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      CKEDITOR.replace('oxygen_blogbundle_blogtype_blog');
+    });  
+  </script>
+{% endblock %}
+{% block stylesheets %}
+  {% stylesheets
+    '@OxygenBlogBundle/Resources/public/css/*'
+    output='/css/wysiwyg.css'
+  %}
+  <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+  {% endstylesheets %}
 {% endblock %}

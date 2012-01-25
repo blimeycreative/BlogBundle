@@ -1,15 +1,15 @@
 <?php
 
-// src/Blogger/BlogBundle/Entity/Category.php
+// src/Oxygen/BlogBundle/Entity/Category.php
 
-namespace Blogger\BlogBundle\Entity;
+namespace Oxygen\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="Oxygen\BlogBundle\Repository\CategoryRepository")
  * @ORM\Table(name="category")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -80,9 +80,9 @@ class Category {
     /**
      * Add blog
      *
-     * @param Blogger\BlogBundle\Entity\Blog $blog
+     * @param Oxygen\BlogBundle\Entity\Blog $blog
      */
-    public function addBlog(\Blogger\BlogBundle\Entity\Blog $blog)
+    public function addBlog(\Oxygen\BlogBundle\Entity\Blog $blog)
     {
         $this->blog[] = $blog;
     }

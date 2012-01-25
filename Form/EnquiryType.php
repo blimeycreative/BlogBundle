@@ -1,7 +1,7 @@
 <?php
-// src/Blogger/BlogBundle/Form/EnquiryType.php
+// src/Oxygen/BlogBundle/Form/EnquiryType.php
 
-namespace Blogger\BlogBundle\Form;
+namespace Oxygen\BlogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;

@@ -1,107 +1,73 @@
 <?php
 
-namespace Blogger\BlogBundle\Controller;
+namespace Oxygen\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Blogger\BlogBundle\Entity\Enquiry;
-use Blogger\BlogBundle\Form\EnquiryType;
+use Oxygen\BlogBundle\Entity\Enquiry;
+use Oxygen\BlogBundle\Form\EnquiryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class PageController extends Controller {
-  
+
   /**
-     * @Route("/", name="BloggerBlogBundle_homepage")
-     * @Template()
-     */
+   * @Route("/", name="OxygenBlogBundle_homepage")
+   * @Template()
+   */
   public function indexAction() {
     $em = $this->getDoctrine()
             ->getEntityManager();
 
-    $blogs = $em->getRepository('BloggerBlogBundle:Blog')
+    $blogs = $em->getRepository('OxygenBlogBundle:Blog')
             ->getLatestBlogs();
 
-    return $this->render('BloggerBlogBundle:Page:index.html.twig', array(
+    return $this->render('OxygenBlogBundle:Page:index.html.twig', array(
                 'blogs' => $blogs
             ));
   }
-  
+
   /**
-     * @Route("/about", name="BloggerBlogBundle_about")
-     * @Template()
-     */
+   * @Route("/about", name="OxygenBlogBundle_about")
+   * @Template()
+   */
   public function aboutAction() {
-    return $this->render('BloggerBlogBundle:Page:about.html.twig');
+    return $this->render('OxygenBlogBundle:Page:about.html.twig');
   }
-  
+
   /**
-     * @Route("/contact", name="BloggerBlogBundle_contact")
-     * @Template()
-     */
-  public function contactAction() {
-    $enquiry = new Enquiry();
-    $form = $this->createForm(new EnquiryType(), $enquiry);
-
-    $request = $this->getRequest();
-    if ($request->getMethod() == 'POST') {
-      $form->bindRequest($request);
-
-      if ($form->isValid()) {
-
-        $message = \Swift_Message::newInstance()
-                ->setSubject('Contact enquiry from symblog')
-                ->setFrom('enquiries@symblog.co.uk')
-                ->setTo($this->container->getParameter('blogger_blog.emails.contact_email'))
-                ->setBody($this->renderView('BloggerBlogBundle:Page:contactEmail.txt.twig', array('enquiry' => $enquiry)));
-        $this->get('mailer')->send($message);
-
-        $this->get('session')->setFlash('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
-
-        // Redirect - This is important to prevent users re-posting
-        // the form if they refresh the page
-        return $this->redirect($this->generateUrl('BloggerBlogBundle_contact'));
-      }
-    }
-
-    return $this->render('BloggerBlogBundle:Page:contact.html.twig', array(
-                'form' => $form->createView()
-            ));
-  }
-  
-    /**
-     * @Route("/test")
-     * @Template()
-     */
+   * @Route("/test")
+   * @Template()
+   */
   public function testAction() {
     $em = $this->getDoctrine()->getEntityManager();
     $em->getRepository('blog')->getArchiveList();
   }
-  
+
   public function sidebarAction() {
     $em = $this->getDoctrine()
             ->getEntityManager();
 
-    $tags = $em->getRepository('BloggerBlogBundle:Blog')
+    $tags = $em->getRepository('OxygenBlogBundle:Blog')
             ->getTags();
 
-    $tagWeights = $em->getRepository('BloggerBlogBundle:Blog')
+    $tagWeights = $em->getRepository('OxygenBlogBundle:Blog')
             ->getTagWeights($tags);
 
-    $commentLimit   = $this->container
-                           ->getParameter('blogger_blog.comments.latest_comment_limit');
-    $latestComments = $em->getRepository('BloggerBlogBundle:Comment')
-                         ->getLatestComments($commentLimit);
-       
-    $categories = $em->getRepository('BloggerBlogBundle:Category')->findAll();
+    $commentLimit = $this->container
+            ->getParameter('oxygen_blog.comments.latest_comment_limit');
+    $latestComments = $em->getRepository('OxygenBlogBundle:Comment')
+            ->getLatestComments($commentLimit);
 
-    $archive_dates = $em->getRepository('BloggerBlogBundle:Blog')->getArchiveList();
-    
-    return $this->render('BloggerBlogBundle:Page:sidebar.html.twig', array(
-        'latestComments'    => $latestComments,
-        'tags'              => $tagWeights,
-        'categories'        => $categories,
-        'archive_dates'     => $archive_dates
-    ));
+    $categories = $em->getRepository('OxygenBlogBundle:Category')->findAll();
+
+    $archive_dates = $em->getRepository('OxygenBlogBundle:Blog')->getArchiveList();
+
+    return $this->render('OxygenBlogBundle:Page:sidebar.html.twig', array(
+                'latestComments' => $latestComments,
+                'tags' => $tagWeights,
+                'categories' => $categories,
+                'archive_dates' => $archive_dates
+            ));
   }
 
 }

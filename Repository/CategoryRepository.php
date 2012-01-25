@@ -1,6 +1,6 @@
 <?php
 
-namespace Blogger\BlogBundle\Repository;
+namespace Oxygen\BlogBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 

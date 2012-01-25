@@ -1,11 +1,11 @@
 <?php
-// src/Blogger/BlogBundle/Controller/CommentController.php
+// src/Oxygen/BlogBundle/Controller/CommentController.php
 
-namespace Blogger\BlogBundle\Controller;
+namespace Oxygen\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Blogger\BlogBundle\Entity\Comment;
-use Blogger\BlogBundle\Form\CommentType;
+use Oxygen\BlogBundle\Entity\Comment;
+use Oxygen\BlogBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -22,14 +22,14 @@ class CommentController extends Controller
         $comment->setBlog($blog);
         $form   = $this->createForm(new CommentType(), $comment);
 
-        return $this->render('BloggerBlogBundle:Comment:form.html.twig', array(
+        return $this->render('OxygenBlogBundle:Comment:form.html.twig', array(
             'comment' => $comment,
             'form'   => $form->createView()
         ));
     }
     
     /**
-     * @Route("/comment/{blog_id}", name="BloggerBlogBundle_comment_create")
+     * @Route("/comment/{blog_id}", name="OxygenBlogBundle_comment_create")
      * @Template()
      */
     public function createAction($blog_id)
@@ -49,13 +49,13 @@ class CommentController extends Controller
             $em->persist($comment);
             $em->flush();
           
-            return $this->redirect($this->generateUrl('BloggerBlogBundle_blog_show', array(
+            return $this->redirect($this->generateUrl('OxygenBlogBundle_blog_show', array(
                 'id' => $comment->getBlog()->getId())) .
                 '#comment-' . $comment->getId()
             );
         }
 
-        return $this->render('BloggerBlogBundle:Comment:create.html.twig', array(
+        return $this->render('OxygenBlogBundle:Comment:create.html.twig', array(
             'comment' => $comment,
             'form'    => $form->createView()
         ));
@@ -66,7 +66,7 @@ class CommentController extends Controller
         $em = $this->getDoctrine()
                     ->getEntityManager();
 
-        $blog = $em->getRepository('BloggerBlogBundle:Blog')->find($blog_id);
+        $blog = $em->getRepository('OxygenBlogBundle:Blog')->find($blog_id);
 
         if (!$blog) {
             throw $this->createNotFoundException('Unable to find Blog post.');

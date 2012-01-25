@@ -1,5 +1,5 @@
-{# src/Blogger/BlogBundle/Resources/views/Page/contact.html.twig #}
-{% extends 'BloggerBlogBundle::layout.html.twig' %}
+{# src/Oxygen/BlogBundle/Resources/views/Page/contact.html.twig #}
+{% extends 'OxygenBlogBundle::layout.html.twig' %}
 
 {% block title %}Contact{% endblock%}
 
@@ -8,15 +8,15 @@
   <h1>Contact symblog</h1>
 </header>
 
-{% if app.session.hasFlash('blogger-notice') %}
-<div class="blogger-notice">
-        {{ app.session.flash('blogger-notice') }}
+{% if app.session.hasFlash('oxygen-notice') %}
+<div class="oxygen-notice">
+        {{ app.session.flash('oxygen-notice') }}
   </div>
 {% endif %}
 
   <p>Want to contact symblog?</p>
 
-  <form action="{{ path('BloggerBlogBundle_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
+  <form action="{{ path('OxygenBlogBundle_contact') }}" method="post" {{ form_enctype(form) }} class="oxygen">
         {{ form_errors(form) }}
 
         {{ form_row(form.name) }}

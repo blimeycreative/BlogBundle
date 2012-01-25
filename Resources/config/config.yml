@@ -1,7 +1,7 @@
 ## YAML Template.
 ---
 parameters:
-    # Blogger contact email address
-    blogger_blog.emails.contact_email: mark@oxygenthinking.com
-    # Blogger max latest comments
-    blogger_blog.comments.latest_comment_limit: 10
+    # Oxygen contact email address
+    oxygen_blog.emails.contact_email: mark@oxygenthinking.com
+    # Oxygen max latest comments
+    oxygen_blog.comments.latest_comment_limit: 10

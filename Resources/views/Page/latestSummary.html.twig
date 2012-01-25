@@ -9,7 +9,7 @@
         {% if length %}
       {{ blog.blog(length) }}...
     {% endif %}
-    <a href="{{ path('BloggerBlogBundle_blog_show', { 'id': blog.id }) }}">Read More</a>
+    <a href="{{ path('OxygenBlogBundle_blog_show', { 'id': blog.id }) }}">Read More</a>
     <br /><br />
 
         {% else %}

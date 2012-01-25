@@ -1,6 +1,6 @@
 <?php
 
-namespace Blogger\BlogBundle\Form;
+namespace Oxygen\BlogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
@@ -16,6 +16,6 @@ class CategoryType extends AbstractType
 
     public function getName()
     {
-        return 'blogger_blogbundle_categorytype';
+        return 'oxygen_blogbundle_categorytype';
     }
 }

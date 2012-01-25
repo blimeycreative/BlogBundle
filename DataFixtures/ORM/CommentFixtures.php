@@ -1,12 +1,12 @@
 <?php
-// src/Blogger/BlogBundle/DataFixtures/ORM/CommentFixtures.php
+// src/Oxygen/BlogBundle/DataFixtures/ORM/CommentFixtures.php
 
-namespace Blogger\BlogBundle\DataFixtures\ORM;
+namespace Oxygen\BlogBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Blogger\BlogBundle\Entity\Comment;
-use Blogger\BlogBundle\Entity\Blog;
+use Oxygen\BlogBundle\Entity\Comment;
+use Oxygen\BlogBundle\Entity\Blog;
 
 class CommentFixtures extends AbstractFixture implements OrderedFixtureInterface
 {

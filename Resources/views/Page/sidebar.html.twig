@@ -1,4 +1,4 @@
-{# src/Blogger/BlogBundle/Resources/views/Page/sidebar.html.twig #}
+{# src/Oxygen/BlogBundle/Resources/views/Page/sidebar.html.twig #}
 
 <section class="section">
   <header>
@@ -6,13 +6,13 @@
   </header>
   <p>
         {% for archive_date in archive_dates %}
-          <p><a href="{{ path('BloggerBlogBundle_blog_date', {'date' : archive_date }) }}">{{ archive_date|replace({'/':' '}) }}</a></p>
+          <p><a href="{{ path('OxygenBlogBundle_blog_date', {'date' : archive_date }) }}">{{ archive_date|replace({'/':' '}) }}</a></p>
         {% else %}
           <p>There are no previous blog posts</p>
         {% endfor %}
   </p>
 </section>
-{% render 'BloggerBlogBundle:Blog:latestBlogsSummary' with {'category': 0,'number_of_posts': 3, 'length': 10} %}
+{% render 'OxygenBlogBundle:Blog:latestBlogsSummary' with {'category': 0,'number_of_posts': 3, 'length': 10} %}
 <section class="section">
   <header>
     <h3>Tag Cloud</h3>
@@ -32,7 +32,7 @@
   </header>
   <p>
         {% for category in categories %}
-          <p><a href="{{ path('BloggerBlogBundle_blog_category', {'category' : category.slug }) }}">{{ category.name|title }}</a></p>
+          <p><a href="{{ path('OxygenBlogBundle_blog_category', {'category' : category.slug }) }}">{{ category.name|title }}</a></p>
         {% else %}
           <p>There are no categories</p>
         {% endfor %}
@@ -46,7 +46,7 @@
   <article class="comment">
     <header>
       <p class="small"><span class="highlight">{{ comment.user }}</span> commented on
-        <a href="{{ path('BloggerBlogBundle_blog_show', { 'id': comment.blog.id }) }}#comment-{{ comment.id }}">
+        <a href="{{ path('OxygenBlogBundle_blog_show', { 'id': comment.blog.id }) }}#comment-{{ comment.id }}">
                         {{ comment.blog.title }}
           </a>
           [<em><time datetime="{{ comment.created|date('c') }}">{{ comment.created|date('Y-m-d h:iA') }}</time></em>]
