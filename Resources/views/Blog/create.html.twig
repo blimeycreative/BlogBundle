@@ -16,7 +16,8 @@
   {% endjavascripts %}
   <script type="text/javascript">
     $(document).ready(function() {
-      CKEDITOR.replace('oxygen_blogbundle_blogtype_blog');
+      CKEDITOR.basePath = '/bundles/oxygenblog/';
+$('textarea#oxygen_blogbundle_blogtype_blog').ckeditor();
     });  
   </script>
 {% endblock %}
