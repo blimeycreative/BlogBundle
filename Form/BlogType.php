@@ -12,7 +12,7 @@ class BlogType extends AbstractType
         $builder
             ->add('title')
             ->add('author')
-            ->add('blog')
+            ->add('blog', 'textarea', array('attr' => array('class' => 'tinymce')))
             ->add('image')
             ->add('tags')
             ->add('categories', 'entity', array(
