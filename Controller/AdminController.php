@@ -85,7 +85,6 @@ class AdminController extends Controller {
         if ($blog->getCategories()) {
           $categories = $blog->getCategories();
           $category = $categories[0]->getSlug();
-          die($category);
         }
 
         if ($category == 'general') {
