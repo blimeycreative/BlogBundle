@@ -14,4 +14,7 @@
 {% block sidebar %}
     {% render "OxygenBlogBundle:Page:sidebar" %}
 {% endblock %}
-{% block javascripts %}{{ tinymce_init() }}{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{{ tinymce_init() }}
+{% endblock %}
