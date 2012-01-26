@@ -5,5 +5,4 @@
 {% block body %}
     <h1>Add a new blog post.</h1>
     {% include 'OxygenBlogBundle:Blog:form.html.twig' with { 'form': form, 'route_action': path('OxygenBlogBundle_blog_create') } %}
-    {{ media_form|raw }}
 {% endblock %}
