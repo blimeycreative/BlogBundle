@@ -45,19 +45,31 @@ class AdminController extends Controller {
   }
 
   /**
+   * @Route("/blog/edit/list", name="OxygenBlogBundle_blog_edit_list")
+   * @Template()
+   */
+  public function editListAction() {
+    $em = $this->getDoctrine()->getEntityManager();
+    $blogs = $em->getRepository('OxygenBlogBundle:Blog')->findAll();
+    return $this->render('OxygenBlogBundle:Page:index.html.twig', array(
+                'blogs' => $blogs
+            ));
+  }
+
+  /**
    * @Route("/blog/edit/{id}", name="OxygenBlogBundle_blog_edit")
    * @Template()
    */
   public function editAction($id) {
     if ($this->getRequest()->getMethod() == "POST") {
       $em = $this->getDoctrine()->getEntityManager();
-      $entity = $em->getRepository('OxygenBlogBundle:Blog')->find($id);
+      $blog = $em->getRepository('OxygenBlogBundle:Blog')->find($id);
 
-      if (!$entity) {
+      if (!$blog) {
         throw $this->createNotFoundException('Unable to find Blog entity.');
       }
 
-      $editForm = $this->createForm(new BlogType(), $entity);
+      $editForm = $this->createForm(new BlogType(), $blog);
 
 
       $request = $this->getRequest();
@@ -65,14 +77,41 @@ class AdminController extends Controller {
       $editForm->bindRequest($request);
 
       if ($editForm->isValid()) {
-        $em->persist($entity);
+        $em->persist($blog);
         $em->flush();
 
+        $category = "";
+
+        if ($blog->getCategories()) {
+          $categories = $blog->getCategories();
+          $category = $categories[0]->getSlug();
+        }
+
+        if ($category == 'general') {
+          return $this->redirect($this->generateUrl('OxygenBlogBundle_blog_show_general', array(
+                              'id' => $blog->getId()
+                          ))
+          );
+        }
+
+        if ($category=="") {
+          return $this->redirect($this->generateUrl('OxygenBlogBundle_blog_show', array(
+                              'id' => $blog->getId()
+                          ))
+          );
+        }
+
+        return $this->redirect($this->generateUrl('OxygenBlogBundle_blog_show', array(
+                            'id' => $blog->getId(),
+                            'category' => $category
+                        ))
+        );
+
         $comments = $em->getRepository('OxygenBlogBundle:Comment')
-                ->getCommentsForBlog($entity->getId());
+                ->getCommentsForBlog($blog->getId());
 
         return $this->render('OxygenBlogBundle:Blog:show.html.twig', array(
-                    'blog' => $entity,
+                    'blog' => $blog,
                     'comments' => $comments
                 ));
       }
