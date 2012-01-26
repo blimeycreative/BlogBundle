@@ -43,6 +43,18 @@ class AdminController extends Controller {
                 'form' => $form->createView()
             ));
   }
+  
+  /**
+   * @Route("/blog/edit/list", name="OxygenBlogBundle_blog_edit_list")
+   * @Template()
+   */
+  public function editListAction() {
+    $em = $this->getDoctrine()->getEntityManager();
+    $blogs = $em->getRepository('OxygenBlogBundle:Blog')->findAll();
+    return $this->render('OxygenBlogBundle:Page:index.html.twig', array(
+        'blogs' => $blogs
+    ));
+  }
 
   /**
    * @Route("/blog/edit/{id}", name="OxygenBlogBundle_blog_edit")
