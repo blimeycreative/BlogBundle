@@ -27,7 +27,7 @@ class Blog {
   protected $title;
 
   /**
-   * @ORM\Column(type="string", length=100)
+   * @ORM\Column(type="string", length=100, nullable=true)
    */
   protected $author;
 
@@ -37,12 +37,12 @@ class Blog {
   protected $blog;
 
   /**
-   * @ORM\Column(type="string", length="20")
+   * @ORM\Column(type="string", length="20", nullable=true)
    */
   protected $image;
 
   /**
-   * @ORM\Column(type="text")
+   * @ORM\Column(type="text", nullable=true)
    */
   protected $tags;
 
