@@ -6,10 +6,11 @@ namespace Oxygen\BlogBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oxygen\BlogBundle\Entity\Category;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class CategoryFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $category1 = new category();
         $category1->setName('general'); 

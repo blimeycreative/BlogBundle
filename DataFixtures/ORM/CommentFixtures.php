@@ -7,10 +7,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oxygen\BlogBundle\Entity\Comment;
 use Oxygen\BlogBundle\Entity\Blog;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class CommentFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $comment = new Comment();
         $comment->setUser('symfony');

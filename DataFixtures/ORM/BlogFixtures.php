@@ -7,10 +7,11 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Oxygen\BlogBundle\Entity\Blog;
 use Oxygen\BlogBundle\Entity\Category;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class BlogFixtures extends AbstractFixture implements OrderedFixtureInterface
 {
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $blog1 = new Blog();
         $blog1->setTitle('A day with Symfony2');
