@@ -38,7 +38,6 @@ class AdminController extends Controller {
       }
     }
     return $this->render('OxygenBlogBundle:Blog:create.html.twig', array(
-                'media_form' => $this->get('oxygen.utility.media.factory')->getUploader(),
                 'comment' => $blog,
                 'form' => $form->createView()
             ));
