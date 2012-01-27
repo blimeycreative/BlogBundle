@@ -14,7 +14,7 @@
         </header>
           <img src="{{ asset(['images/', blog.image]|join) }}" alt="{{ blog.title }} image not found" class="large" />
         <div>
-            <p>{{ blog.blog }}</p>
+            {{ blog.blog|raw }}
         </div>
     </article>
     <section class="comments" id="comments">

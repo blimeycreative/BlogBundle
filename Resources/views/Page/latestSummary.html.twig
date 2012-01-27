@@ -7,7 +7,7 @@
     <h4><span class="highlight">{{ blog.created|date('l, F j, Y') }}</span></h4>
     <h4 class="red-font">{{ blog.title }}</h4>
         {% if length %}
-      {{ blog.blog(length) }}...
+      {{ blog.blog(length)|raw }}...
     {% endif %}
     <a href="{{ path('OxygenBlogBundle_blog_show', { 'id': blog.id }) }}">Read More</a>
     <br /><br />

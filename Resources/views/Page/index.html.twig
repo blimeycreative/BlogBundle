@@ -13,7 +13,7 @@
   </header>
   <img src="{{ asset(['images/', blog.image]|join) }}" />
   <div class="snippet">
-    <p>{{ blog.blog(500) }}</p>
+    {{ blog.blog(500)|raw }}
     <p class="continue"><a href="{{ path('OxygenBlogBundle_blog_show', { 'id': blog.id }) }}">Continue reading...</a></p>
   </div>
 
