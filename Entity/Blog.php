@@ -144,11 +144,12 @@ class Blog {
    *
    * @return text 
    */
-  public function getBlog($length = null) {
+  public function getBlog($length = null, $strip = false) {
+    $text = $strip ? strip_tags($this->blog) : $this->blog;
     if (false === is_null($length) && $length > 0)
-      return substr($this->blog, 0, $length);
+      return substr($text, 0, $length);
     else
-      return $this->blog;
+      return $text;
   }
 
   /**
